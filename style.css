@@ -5,46 +5,171 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-  width: 100%;
-  height: 100vh;
-  /* display: flex;
-    align-items: center;
-    justify-content: center; */
-  background: #d1efb9db;
+body {
+  background-color: rgba(73, 163, 0, 0.258);
 }
 
-h1 {
-  color: green;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 3rem;
+/* App Heading  */
+main {
+  padding: 0 16px;
+}
+
+.title {
+  color: #48a300;
+  font-size: 4rem;
   text-align: center;
 }
-h1 span {
-  color: rgb(0, 0, 0);
+
+.title span {
+  color: #61481c;
 }
 
-.main {
-  background: white;
-  width: 40%;
-  height: 80vh;
-  padding: 30px;
+.app-container {
+  background-color: #fbfbfb;
+  max-width: 660px;
   margin: 0 auto;
-  border-radius: 0.555rem;
+  border-radius: 15px;
+  padding: 32px 42px;
+  box-shadow: 0 0 10px 0px rgb(64, 64, 64);
 }
-.main h2 {
-  font-size: 1.555rem;
-  color: green;
+
+.subtitle .sun-icon {
+  vertical-align: middle;
 }
-.main .day {
-  color: black;
+
+.text-1 {
+  font-size: 14px;
+  color: #858585;
+  margin-bottom: 18px;
 }
-.main .sun-img {
-  width: 40px;
-  height: 40px;
+
+.Progress-bar {
+  height: 30px;
+  background-color: #49a30034;
+  border-radius: 15px;
 }
-.daily-heading {
+.progress-value {
+  height: 100%;
+  width: 40%;
+  background-color: #48a300;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: 500px;
+  color: white;
   display: flex;
   align-items: center;
-  gap: 10px;
+  padding: 0 20px;
+}
+.error-lable {
+  font-size: 14px;
+  color: red;
+  margin: 20px 0;
+}
+
+.goal-container {
+  display: flex;
+  align-items: center;
+  padding: 0 22px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 17px;
+  height: 82px;
+  background-color: #ffffff;
+  margin-bottom: 42px;
+}
+.check-box {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.check-icon {
+  display: none;
+}
+
+.goal-input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  padding-left: 22px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  
+}
+
+.completed.goal-input{
+    color: #48a300;
+  text-decoration-line: line-through;
+}
+
+.goal-input::placeholder {
+  color: #989898;
+}
+
+.bottom-lable {
+  text-align: center;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: rgba(0, 0, 0, 0.723);
+}
+
+.owner {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.723);
+}
+.owner span {
+  color: green;
+  font-weight: 500;
+}
+
+.completed.check-box {
+  background-color: #48a300;
+  border-color: #48a300;
+    
+}
+
+.completed .check-icon {
+  display: block;
+}
+
+
+
+/* Media */
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .app-container {
+    padding: 16px 32px;
+  }
+
+  .goal-container {
+    height: 64px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+  }
+  .check-box {
+    width: 20px;
+    height: 20px;
+  }
+
+  .owner {
+    margin-top: 24px;
+  }
+
+  .Progress-bar {
+    height: 24px;
+  }
 }
