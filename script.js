@@ -13,12 +13,43 @@ const date = new Date();
 let day = weekdays[date.getDay()];
 daySpan.append(day);
 
+const allQuotes = [
+  "Raise the bar by completing your goals!",
+  "Well Begun is half done!",
+  "Just astep away, keep going",
+  "Whoa! You just completed all the goals, time for chill",
+];
+
 const allCheckList = document.querySelectorAll(".check-box");
 const inputfeilds = document.querySelectorAll(".goal-input");
 const error = document.querySelector(".error-lable");
-
 const progressbar = document.querySelector(".progress-bar");
 const progressValue = document.querySelector(".progress-value");
+const progresslable = document.querySelector(".text-1");
+
+//Here we set the object becuse of when new user open this app he well not get any error
+const allGoals = JSON.parse(localStorage.getItem("allGoals")) || {
+  first: {
+    name: "",
+    completed: false,
+  },
+  second: {
+    name: "",
+    completed: false,
+  },
+  third: {
+    name: "",
+    completed: false,
+  },
+};
+
+let completedGoalsCount = Object.values(allGoals).filter(
+  (goal) => goal.completed
+).length;
+progressValue.style.width = `${(completedGoalsCount / 3) * 100}%`;
+
+progressValue.firstElementChild.innerText = `${completedGoalsCount} /3 Completed`;
+progresslable.innerText = allQuotes[completedGoalsCount];
 
 allCheckList.forEach((checkbox) => {
   checkbox.addEventListener("click", (e) => {
@@ -30,8 +61,17 @@ allCheckList.forEach((checkbox) => {
     // Here we are checking if allFieldsFilled is checked then its return true otherwise false
     if (allGoalsAdd) {
       checkbox.parentElement.classList.toggle("completed");
-      progressValue.style.width = "33.3%";
-      
+
+      const inputId = checkbox.nextElementSibling.id;
+      // console.log(   allGoals[inputId]);
+      allGoals[inputId].completed = !allGoals[inputId].completed;
+      completedGoalsCount = Object.values(allGoals).filter(
+        (goal) => goal.completed
+      ).length;
+      progressValue.style.width = `${(completedGoalsCount / 3) * 100}%`;
+      progressValue.firstElementChild.innerText = `${completedGoalsCount} /3 Completed`;
+      progresslable.innerText = allQuotes[completedGoalsCount];
+      localStorage.setItem("allGoals", JSON.stringify(allGoals));
     } else {
       error.style.display = "block";
     }
@@ -39,9 +79,35 @@ allCheckList.forEach((checkbox) => {
 });
 
 inputfeilds.forEach((input) => {
+  // Here we accesing values from the local storage and set them into input field
+  input.value = allGoals[input.id].name;
+
+  // here we set the progress bar
+
+  if (allGoals[input.id].completed) {
+    input.parentElement.classList.add("completed");
+  }
+
   input.addEventListener("focus", () => {
     error.style.display = "none";
   });
-});
 
-// Progerss bar
+  //Progerss bar and local storage
+  input.addEventListener("input", (e) => {
+    // Here we are capturing the what user typing in the input fields
+    //There are two methods to capture the values of input fields
+    // allGoals[input.id] = input.value; // Method first
+    // allGoals[e.target.id] = e.target.value; // method second
+
+    if (allGoals[input.id].completed) {
+      input.value = allGoals[input.id].name;
+
+      return;
+    }
+
+    allGoals[input.id].name = input.value
+
+    // Here we set the captured values in local storage
+    localStorage.setItem("allGoals", JSON.stringify(allGoals)); // We are saving that object values in string using JSON.stringify(allGoals)
+  });
+});
