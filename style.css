@@ -156,6 +156,50 @@ main {
   text-decoration: line-through;
 }
 
+
+.input-add-btn{
+  /* background-color: #61481c; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+.btn1{
+  background-color: #48a300;
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 0.55rem;
+  padding: 10px;
+
+}
+.btn1:hover{
+  background-color: #49a300b7;
+  transition:background-color 0.222s ease-in-out ;
+}
+.btn2{
+  background-color:#61481C;
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 0.55rem;
+  padding: 10px;
+
+}
+
+.btn2:hover{
+  background-color: #61481cc8;
+  transition:background-color 0.222s ease-in-out ;
+}
+
+
 /* Media */
 @media (max-width: 768px) {
   .title {
